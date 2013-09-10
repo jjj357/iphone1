@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1487" systemVersion="11E53" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Contact" representedClassName="Contact" syncable="YES">
+        <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Course" representedClassName="Course" syncable="YES">
+        <attribute name="courseId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="day1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="day2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration1" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="duration2" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="employeeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isOffered" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="room1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="room2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="section" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="semesterName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="showGradedWork" attributeType="String" defaultValueString="Y" syncable="YES"/>
+        <attribute name="startPeriod1" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="startPeriod2" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="subjectCode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="employee" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Employee" inverseName="courses" inverseEntity="Employee" syncable="YES"/>
+        <relationship name="gradedworks" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GradedWork" inverseName="course" inverseEntity="GradedWork" syncable="YES"/>
+        <relationship name="semester" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Semester" inverseName="courses" inverseEntity="Semester" syncable="YES"/>
+        <relationship name="students" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="course" inverseEntity="Student" syncable="YES"/>
+        <relationship name="subject" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="courses" inverseEntity="Subject" syncable="YES"/>
+    </entity>
+    <entity name="Employee" representedClassName="Employee" syncable="YES">
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isCurrent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="telephone" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="webSite" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="employee" inverseEntity="Course" syncable="YES"/>
+    </entity>
+    <entity name="GradedWork" representedClassName="GradedWork" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="courseInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateAssigned" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dateCreated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dateDue" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="eventIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gradeDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isCurrent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="moreInfoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rowVersion" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Course" inverseName="gradedworks" inverseEntity="Course" syncable="YES"/>
+        <relationship name="groupmembers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GroupMember" inverseName="gradedwork" inverseEntity="GroupMember" syncable="YES"/>
+    </entity>
+    <entity name="GroupMember" representedClassName="GroupMember" syncable="YES">
+        <attribute name="abRecordId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="gradedwork" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="GradedWork" inverseName="groupmembers" inverseEntity="GradedWork" syncable="YES"/>
+    </entity>
+    <entity name="Login" representedClassName="Login" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tokenExpires" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Program" representedClassName="Program" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="credential" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isCurrent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="programDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="semesters" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="students" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="program" inverseEntity="Student" syncable="YES"/>
+        <relationship name="subjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Subject" inverseName="programs" inverseEntity="Subject" syncable="YES"/>
+    </entity>
+    <entity name="Semester" representedClassName="Semester" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="semesterName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="semesterNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="semesterString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="semester" inverseEntity="Course" syncable="YES"/>
+    </entity>
+    <entity name="Student" representedClassName="Student" syncable="YES">
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="givenName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isCurrent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="studentId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="course" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="students" inverseEntity="Course" syncable="YES"/>
+        <relationship name="program" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Program" inverseName="students" inverseEntity="Program" syncable="YES"/>
+    </entity>
+    <entity name="Subject" representedClassName="Subject" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isCurrent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="outlineUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subjectDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subjectName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="subject" inverseEntity="Course" syncable="YES"/>
+        <relationship name="programs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Program" inverseName="subjects" inverseEntity="Program" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Contact" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Course" positionX="0" positionY="0" width="128" height="345"/>
+        <element name="Employee" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="GradedWork" positionX="0" positionY="0" width="128" height="300"/>
+        <element name="GroupMember" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Login" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Program" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="Semester" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Student" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="Subject" positionX="0" positionY="0" width="128" height="165"/>
+    </elements>
+</model>
